@@ -911,6 +911,8 @@ class SingularityMode(LaunchMode):
 
         if self.gpu:
             extra_args += ' --nv '
+        if isinstance(extra_args, list):
+            extra_args = ''.join(extra_args)
         singularity_prefix = 'singularity exec %s %s /bin/bash -c ' % (
             extra_args,
             self.singularity_image,
